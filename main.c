@@ -2,6 +2,7 @@
 #include "gp_drive.h"
 #include "stm32f10x.h"
 #include "uart_drive.h"
+#include "str_lib.h"
 /*
 UART manager:
 0-count		incrementing each itme we receive msg
@@ -27,17 +28,22 @@ static char USART_2_msg[250];
 //static unsigned short USART_2_cnt=0;
 //static unsigned short USART_2_sig=0;
 //static unsigned short USART_2_bdg=0;
-unsigned short uart_2_mgr[7]={0,0,0,0,'0',0,0};
+unsigned short uart_2_mgr[7]={0,0,0,1,'\n',0,0};
 
 static char USART_3_msg[250];
 //static unsigned short USART_3_cnt=0;
 //static unsigned short USART_3_sig=0;
 //static unsigned short USART_3_bdg=0;
-unsigned short uart_3_mgr[7]={0,0,0,0,'0',0,0};
+unsigned short uart_3_mgr[7]={0,0,0,1,'\n',0,0};
 
 //static static char chat;
 //static static char msg[30]="welcome to the weew!\n";
 //static static char msg1[30]="welcome to the noob!\n";
+static volatile int sgnl=0;
+static volatile _Bool val1=0;
+static volatile _Bool tst1val=0;
+static volatile int val3=0;
+char str1_tst[12];
 
 int main(void)
 {
@@ -48,6 +54,8 @@ int main(void)
 	
 UART_send(2,"this is uart 2");//nucle com6
 UART_send(3,"this is uart 3");//adapter com10
+	int2str(2597,str1_tst);
+	val3=char2int("2597");
 	while(1)
 	{
 		//receive char:
@@ -57,13 +65,16 @@ UART_send(3,"this is uart 3");//adapter com10
 	//	delay_MS(100);
 		if(uart_2_mgr[1]==1)
 		{
-			UART_send(3,USART_2_msg);
-			uart_3_mgr[1]=0;
+		//	UART_send(3,USART_2_msg);
+			tst1val=str_findL("Weew","Weewk");
+			sgnl=str_len(USART_2_msg);
+			val1=str_find("hehe",USART_2_msg);
+			uart_2_mgr[1]=0;
 			str_empty(USART_2_msg);		//CLEAR_ the string for sending no errors when shorter msg than previous
 		}
 		if(uart_3_mgr[1]==1)
 		{
-			UART_send(2,USART_3_msg);
+		//	UART_send(2,USART_3_msg);
 			uart_3_mgr[1]=0;
 			str_empty(USART_3_msg);		//CLEAR_BIT the string for sending
 		

@@ -10,5 +10,5 @@ char UART_rx(unsigned short uart);
 void UART_tx(unsigned short uart,char c);
 void UART_isr(unsigned short uart,unsigned short uart_mgr[], char str[]);
 void UART_send(unsigned short uart_sel,char str[]);
-void str_empty(char str[]);
+
 

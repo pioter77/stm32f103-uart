@@ -1,7 +1,7 @@
 #include "uart_drive.h"
 #include "gp_drive.h"
 #include "systick_lib.h"
-
+#include "str_lib.h"
 void UART_init(unsigned short usart,unsigned long BR)
 {
 	//if using USArt1 clk speed is 7Mmhz, else for susart2/3 only 36Mhz (apb1 clk slower)
@@ -164,15 +164,7 @@ void UART_send(unsigned short uart_sel,char str[])
 		i++;
 	}
 }
-void str_empty(char str[])//clearing the string after message handling finished
-{
-	int i=0;
-		while(str[i] != '\0')
-	{
-		str[i]='\0';
-		i++;
-	}
-}
+
 
 //fcn for sending msg to the user and keep ewaiting
 void UART_msg(unsigned short uart, char str[],unsigned short str_mgr[])

@@ -408,6 +408,16 @@
               <FileType>5</FileType>
               <FilePath>.\uart_drive.h</FilePath>
             </File>
+            <File>
+              <FileName>str_lib.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\str_lib.h</FilePath>
+            </File>
+            <File>
+              <FileName>str_lib.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\str_lib.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

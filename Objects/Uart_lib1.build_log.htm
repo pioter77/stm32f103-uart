@@ -22,16 +22,76 @@ Dialog DLL:      TCM.DLL V1.46.0.0
  
 <h2>Project:</h2>
 C:\Users\piotr\Documents\Keil_projekty\Uart_lib1\Uart_lib1.uvprojx
-Project File Date:  11/25/2020
+Project File Date:  11/28/2020
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.14', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
-Build target 'Target 1'
+Rebuild target 'Target 1'
+gp_drive.c(34): warning: implicit conversion changes signedness: 'int' to 'unsigned long' [-Wsign-conversion]
+        *CR |=((dir<<(tPIN*4)) | (opt<<(tPIN*4+2)));    ////set up the direction and the option of the pin eg. output and push pull
+            ~~ ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+gp_drive.c(56): warning: implicit conversion changes signedness: 'unsigned long' to 'int' [-Wsign-conversion]
+        state=((*IDR & ((unsigned long)1<<pin))>>pin);  //to drugie przesuniecie to jest dlatego zeby miec znowu wartosc 1 bit a nie np 1 ale na 6 pozycji bo odczytujem tylko stan danego pinu
+             ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+2 warnings generated.
+compiling gp_drive.c...
+main.c(86): warning: no previous prototype for function 'USART2_IRQHandler' [-Wmissing-prototypes]
+void USART2_IRQHandler()
+     ^
+main.c(86): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void USART2_IRQHandler()
+^
+static 
+main.c(90): warning: no previous prototype for function 'USART3_IRQHandler' [-Wmissing-prototypes]
+void USART3_IRQHandler()
+     ^
+main.c(90): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void USART3_IRQHandler()
+^
+static 
+main.c(95): warning: no previous prototype for function 'SysTick_Handler' [-Wmissing-prototypes]
+void SysTick_Handler(void)
+     ^
+main.c(95): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void SysTick_Handler(void)
+^
+static 
+main.c(46): warning: no previous extern declaration for non-static variable 'str1_tst' [-Wmissing-variable-declarations]
+char str1_tst[12];
+     ^
+main.c(46): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+char str1_tst[12];
+^
+4 warnings generated.
+compiling main.c...
 compiling systick_lib.c...
+uart_drive.c(170): warning: no previous prototype for function 'UART_msg' [-Wmissing-prototypes]
+void UART_msg(unsigned short uart, char str[],unsigned short str_mgr[])
+     ^
+uart_drive.c(170): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void UART_msg(unsigned short uart, char str[],unsigned short str_mgr[])
+^
+static 
+1 warning generated.
+compiling uart_drive.c...
+assembling startup_stm32f10x_md.s...
+str_lib.c(117): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+1 warning generated.
+compiling str_lib.c...
+RTE/Device/STM32F103C8/system_stm32f10x.c(167): warning: no previous extern declaration for non-static variable 'AHBPrescTable' [-Wmissing-variable-declarations]
+__I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
+            ^
+RTE/Device/STM32F103C8/system_stm32f10x.c(167): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+__I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
+    ^
+1 warning generated.
+compiling system_stm32f10x.c...
 linking...
-Program Size: Code=4652 RO-data=268 RW-data=28 ZI-data=2152  
+Program Size: Code=5152 RO-data=268 RW-data=28 ZI-data=2176  
 FromELF: creating hex file...
-".\Objects\Uart_lib1.axf" - 0 Error(s), 0 Warning(s).
+".\Objects\Uart_lib1.axf" - 0 Error(s), 9 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -60,9 +120,9 @@ Package Vendor: Keil
    * Component: Keil::Device:Startup:1.0.0
       Source file:   Device\Source\ARM\startup_stm32f10x_md.s
       Source file:   Device\Source\system_stm32f10x.c
-      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
       Include file:  RTE_Driver\Config\RTE_Device.h
-Build Time Elapsed:  00:00:01
+      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
